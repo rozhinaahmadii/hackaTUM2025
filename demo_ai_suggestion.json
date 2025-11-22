@@ -1,0 +1,70 @@
+{
+    "action_items": [
+      {
+        "title": "Secure mortgage pre-approval and rate quotes",
+        "timeline_months": 1,
+        "priority": 1,
+        "category": "financial",
+        "description": "Contact 2–3 lenders and a broker to confirm maximum affordable monthly payment (€1,400–€1,800), mortgage amount (~€330k–€400k), and lock indicative rates. Request offers with 10–15 year fixed terms and compare total cost, Sondertilgung options, and fees."
+      },
+      {
+        "title": "Define criteria and expand search radius around Munich",
+        "timeline_months": 1,
+        "priority": 2,
+        "category": "market",
+        "description": "Clarify must‑haves vs nice‑to‑haves for a 4-room+ apartment. Given budget fit, prioritize larger units in outer districts or commuter towns (e.g., Dachau, Freising, Ebersberg, Fürstenfeldbruck) and consider townhouses/maisonettes. Set price filters to €500k–€560k."
+      },
+      {
+        "title": "Set savings plan and protect the down payment",
+        "timeline_months": 6,
+        "priority": 3,
+        "category": "financial",
+        "description": "Ring‑fence the €200k for down payment and closing costs in high‑yield insured accounts. Build/maintain a 6‑month emergency fund separate from purchase funds. Automate monthly surplus to reach an extra €10k–€20k buffer for furnishings and move‑in costs."
+      },
+      {
+        "title": "Leverage subsidies and favorable loan programs",
+        "timeline_months": 2,
+        "priority": 4,
+        "category": "financial",
+        "description": "Check eligibility for KfW Wohneigentum programs (e.g., 124) and energy‑efficient options (297/298) to lower rates. Ask lenders to structure financing so fees are covered from cash and mortgage fits payment cap."
+      },
+      {
+        "title": "Begin targeted viewings and data‑driven shortlisting",
+        "timeline_months": 3,
+        "priority": 5,
+        "category": "market",
+        "description": "Schedule 2–3 viewings per week in shortlisted areas. Track €/m², HOA/Hausgeld, energy class, commute, and expected renovations. Aim for 120–150 m² in outer areas or 90–110 m² closer in if layout is efficient."
+      },
+      {
+        "title": "Offer and negotiation strategy",
+        "timeline_months": 9,
+        "priority": 6,
+        "category": "process",
+        "description": "Use pre‑approval to bid decisively. Target properties on market >30 days to improve leverage. Negotiate shared/buyer‑reduced brokerage where possible and seek price adjustments for needed upgrades."
+      },
+      {
+        "title": "Closing readiness and smooth move‑in",
+        "timeline_months": 15,
+        "priority": 7,
+        "category": "process",
+        "description": "Prepare documents (income, SCHUFA, savings proofs), arrange valuation, lock final rate, and coordinate notary. Plan renovations, utilities, and move timeline, keeping a 5–10% buffer for unexpected costs."
+      }
+    ],
+    "total_timeline_months": 24,
+    "budget_analysis": {
+      "affordable_price_range": "€500,000 - €560,000",
+      "monthly_payment_estimate": "€1,400 - €1,800",
+      "down_payment_needed": "€180,000 - €220,000 (incl. ~8% purchase costs in Bavaria)"
+    },
+    "quick_wins": [
+      "Pull free SCHUFA report and correct any errors",
+      "Automate monthly savings transfer to a dedicated home fund",
+      "Book two lender calls and request standardized, comparable quotes",
+      "Set property alerts on ImmoScout24/Immowelt with €500k–€560k cap",
+      "Create must‑have/nice‑to‑have list and map 3 target suburbs with commute times"
+    ],
+    "next_immediate_steps": [
+      "Complete SCHUFA check and obtain a mortgage pre‑approval within 2 weeks",
+      "Set search alerts and schedule first weekend of viewings in 2–3 shortlisted areas"
+    ]
+  }

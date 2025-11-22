@@ -4,7 +4,7 @@ import Footer from "./components/Footer";
 
 import Home from "./pages/Home";
 import DreamHome from "./pages/DreamHome";
-import Finances from "./pages/Finances";
+import Profile from "./pages/Profile";
 import Planner from "./pages/Planner";
 
 export default function App() {
@@ -16,12 +16,12 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/dream-home" element={<DreamHome />} />
-          <Route path="/finances" element={<Finances />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/planner" element={<Planner />} />
         </Routes>
       </div>
 
-      <Footer /> {/* ← ADD THIS */}
+      <Footer /> 
     </>
   );
 }
