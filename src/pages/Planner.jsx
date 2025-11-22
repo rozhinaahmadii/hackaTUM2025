@@ -30,63 +30,75 @@ export default function Planner() {
 
   // Horizontal progress bar
   const renderProgress = () => (
-    <div style={{ width: "100%", marginTop: "2rem", position: "relative" }}>
-      <p style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+    <div style={{ width: "100%", marginTop: "2rem" }}>
+      <p style={{ fontWeight: "bold", fontSize: "1.2rem", marginBottom: "1.5rem" }}>
         Savings Progress (€{savings.toLocaleString()} / €{goalAmount.toLocaleString()})
       </p>
 
-      {/* Track */}
-      <div
-        style={{
-          width: "100%",
-          height: "22px",
-          background: "#e0e0e0",
-          borderRadius: "14px",
-          position: "relative"
-        }}
-      >
+      {/* Visualization Container */}
+      <div style={{ position: "relative", height: "22px", marginBottom: "3rem" }}>
+        
+        {/* Track */}
         <div
           style={{
-            width: `${savingsPercent}%`,
+            width: "100%",
             height: "100%",
-            background: "linear-gradient(90deg, #9df79d, #83e858, #05c511)",
+            background: "#e0e0e0",
             borderRadius: "14px",
-            transition: "width 0.4s ease"
+            position: "absolute",
+            top: 0,
+            left: 0,
+            overflow: "hidden"
           }}
-        />
-      </div>
-
-      {/* Milestones */}
-      {savingsMilestones.map((m) => {
-        const percent = (m.point / goalAmount) * 100;
-        const iconSize = m.goal ? 30 : 22;
-        const reached = savings >= m.point;
-
-        return (
+        >
           <div
-            key={m.id}
             style={{
-              position: "absolute",
-              top: "40px",
-              left: `${percent}%`,
-              transform: `translateX(-${iconSize / 2}px)`,
-              textAlign: "center"
+              width: `${savingsPercent}%`,
+              height: "100%",
+              background: "linear-gradient(90deg, #9df79d, #83e858, #05c511)",
+              borderRadius: "14px",
+              transition: "width 0.4s ease"
             }}
-          >
+          />
+        </div>
+
+        {/* Milestones */}
+        {savingsMilestones.map((m) => {
+          const percent = (m.point / goalAmount) * 100;
+          const iconSize = m.goal ? 30 : 22;
+          const reached = savings >= m.point;
+          const topOffset = 11 - (iconSize / 2); // Center on 22px track
+
+          return (
             <div
+              key={m.id}
               style={{
-                width: iconSize,
-                height: iconSize,
-                borderRadius: "50%",
-                background: reached ? "#067b06" : "#ccc",
-                border: m.goal ? "3px solid #219b25" : "2px solid #bbb",
-                margin: "0 auto"
+                position: "absolute",
+                top: `${topOffset}px`,
+                left: `${percent}%`,
+                transform: "translateX(-50%)",
+                textAlign: "center",
+                zIndex: 10,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center"
               }}
-            />
-            <p style={{ marginTop: 5, fontSize: "0.85rem" }}>{m.title}</p>
-          </div>
-        );
-      })}
+            >
+              <div
+                style={{
+                  width: iconSize,
+                  height: iconSize,
+                  borderRadius: "50%",
+                  background: reached ? "#067b06" : "#ccc",
+                  border: m.goal ? "3px solid #219b25" : "2px solid #bbb",
+                  boxShadow: "0 2px 4px rgba(0,0,0,0.2)"
+                }}
+              />
+              <p style={{ marginTop: 5, fontSize: "0.85rem", whiteSpace: "nowrap" }}>{m.title}</p>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 
