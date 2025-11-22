@@ -1,6 +1,7 @@
 import { useState } from "react";
 import DecisionNode from "../components/DecisionNode"; 
 import DecisionSettingsModal from "../components/DecisionSettingsModal";
+import AISuggestedPlans from "../components/AISuggestedPlans";
 import { predefinedDecisions } from "../data/decisions";
 import TimelineSlider from "../components/TimelineSlider";
 
@@ -15,6 +16,15 @@ export default function Planner() {
 
   // active decisions (toggled ON)
   const [activeDecisions, setActiveDecisions] = useState([]);
+
+  // Sample user profile for AI agent (you can replace this with actual user data)
+  const userProfile = {
+    monthlyIncome: 5000,
+    savings: 200000,
+    location: 'Munich',
+    propertyType: '4 BHK apartment',
+    timeline: '2 years'
+  };
 
   // toggle ON/OFF
   const handleDecisionToggle = (id) => {
@@ -40,6 +50,9 @@ export default function Planner() {
 
   return (
     <div>
+      {/* AI SUGGESTED PLANS SECTION */}
+      <AISuggestedPlans userProfile={userProfile} />
+
       <h2>Life Decisions</h2>
       <p>Select a decision to see its impact on your timeline.</p>
 
