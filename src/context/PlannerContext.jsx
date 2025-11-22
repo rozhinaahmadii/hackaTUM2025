@@ -17,6 +17,15 @@ export function PlannerProvider({ children }) {
     city: "",
   });
 
+  // Financial data
+  const [finances, setFinances] = useState({
+    jobType: "",
+    salary: 0,
+    savings: 0,
+    monthlySavings: 0, // Added for Time to Home prediction
+    target: 0, // User defined target
+  });
+
   // FETCH PROPERTIES + CALCULATE AVERAGE
   async function fetchPropertiesFromAPI(params) {
     const data = await searchProperties(params);
@@ -44,8 +53,11 @@ export function PlannerProvider({ children }) {
       value={{
         properties,
         avgPrice,
+        propertyCostEstimate: avgPrice, // Alias for Profile page
         dreamHome,
         setDreamHome,
+        finances,
+        setFinances,
         fetchPropertiesFromAPI,
         decisionTexts,
         setDecisionTexts,

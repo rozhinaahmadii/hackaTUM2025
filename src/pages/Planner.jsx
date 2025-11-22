@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { usePlanner } from "../context/PlannerContext"; // Import context
 import DecisionNode from "../components/DecisionNode"; 
 import DecisionSettingsModal from "../components/DecisionSettingsModal";
 import AISuggestedPlans from "../components/AISuggestedPlans";
@@ -6,6 +7,7 @@ import { predefinedDecisions } from "../data/decisions";
 import TimelineSlider from "../components/TimelineSlider";
 
 export default function Planner() {
+  const { finances, dreamHome } = usePlanner(); // Get real data
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedDecision, setSelectedDecision] = useState(null);
 
@@ -17,13 +19,13 @@ export default function Planner() {
   // active decisions (toggled ON)
   const [activeDecisions, setActiveDecisions] = useState([]);
 
-  // Sample user profile for AI agent (you can replace this with actual user data)
+  // Construct user profile from context data
   const userProfile = {
-    monthlyIncome: 5000,
-    savings: 200000,
-    location: 'Munich',
-    propertyType: '4 BHK apartment',
-    timeline: '2 years'
+    monthlyIncome: finances?.salary || 0,
+    savings: finances?.savings || 0,
+    location: dreamHome?.city || 'Munich',
+    propertyType: dreamHome?.propertyType || 'Apartment',
+    timeline: 'ASAP' // You might want to add a timeline input to Profile page later
   };
 
   // toggle ON/OFF

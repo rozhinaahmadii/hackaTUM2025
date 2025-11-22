@@ -13,8 +13,9 @@ export default function Footer() {
         {/* Links */}
         <div className="footer-links">
           <h4>Explore</h4>
+          <a href="/">Home</a>
           <a href="/dream-home">Dream Home</a>
-          <a href="/finances">Finances</a>
+          <a href="/profile">Profile</a>
           <a href="/planner">Planner</a>
         </div>
 

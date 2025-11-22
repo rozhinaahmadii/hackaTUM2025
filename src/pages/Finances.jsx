@@ -27,6 +27,15 @@ export default function Finances() {
             }
           />
 
+          <label>Current Savings (€)</label>
+          <input
+            type="number"
+            value={finances.savings}
+            onChange={(e) =>
+              setFinances({ ...finances, savings: Number(e.target.value) })
+            }
+          />
+
           <button className="btn" onClick={() => alert("Data saved!")}>
             Save
           </button>
@@ -36,7 +45,9 @@ export default function Finances() {
           <h3>Summary</h3>
           <div className="row">
             <span className="row-label">Estimated home cost</span>
-            <span className="row-value">{propertyCostEstimate} €</span>
+            <span className="row-value">
+              {propertyCostEstimate ? propertyCostEstimate.toLocaleString() : "0"} €
+            </span>
           </div>
 
           <button className="btn-outline" onClick={() => navigate("/planner")}>
