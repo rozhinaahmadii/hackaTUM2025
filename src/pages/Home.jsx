@@ -7,12 +7,11 @@ export default function Home() {
   console.log("Home component is rendering");
 
   return (
-    <div style={{ padding: "20px", backgroundColor: "#fff", minHeight: "400px" }}>
+    <div style={{ padding: "20px", minHeight: "400px" }}>
       <h1 style={{ 
-        fontSize: "32px", 
+        fontSize: "30px", 
         marginBottom: "10px", 
         color: "#333",
-        border: "2px solid red" // Temporary red border to make it visible
       }}>
         A guided, data-driven path to home ownership
       </h1>
