@@ -26,7 +26,7 @@ export default function DreamHome() {
       type,
       sortBy: "asc",
       sortKey: "pricePerSqm",
-      from: 0,
+      from: 400,
       size: 800,
       geoSearches: {
         geoSearchQuery: city,
