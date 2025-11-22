@@ -1,8 +1,14 @@
+import { useState } from "react";
 import { usePlanner } from "../context/PlannerContext"; 
 import AISuggestedPlans from "../components/AISuggestedPlans";
 
 export default function Planner() {
   const { finances, setFinances, dreamHome } = usePlanner();
+  
+  // State for Life Event Modal
+  const [showEventModal, setShowEventModal] = useState(false);
+  const [eventText, setEventText] = useState("");
+  const [isClassifying, setIsClassifying] = useState(false);
 
   // Values fetched DIRECTLY from Profile page (context)
   const savings = finances?.savings || 0;
@@ -102,6 +108,7 @@ export default function Planner() {
 
       {/* + LIFE EVENT BUTTON */}
       <button
+        onClick={() => setShowEventModal(true)}
         style={{
           padding: "0.9rem 3rem",
           borderRadius: "10px",
@@ -117,6 +124,115 @@ export default function Planner() {
       >
         + Life Event
       </button>
+
+      {/* LIFE EVENT MODAL */}
+      {showEventModal && (
+        <div style={{
+          position: "fixed",
+          top: 0, left: 0, right: 0, bottom: 0,
+          backgroundColor: "rgba(0,0,0,0.5)",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          zIndex: 1000
+        }}>
+          <div style={{
+            backgroundColor: "white",
+            padding: "2rem",
+            borderRadius: "12px",
+            width: "90%",
+            maxWidth: "500px",
+            boxShadow: "0 4px 20px rgba(0,0,0,0.2)"
+          }}>
+            <h3>Add a Life Event</h3>
+            <p style={{ color: "#666", marginBottom: "1rem" }}>
+              Describe what happened (e.g., "I got a €5000 bonus" or "I spent €2000 on a vacation").
+            </p>
+            
+            <textarea
+              value={eventText}
+              onChange={(e) => setEventText(e.target.value)}
+              placeholder="Type your event here..."
+              style={{
+                width: "100%",
+                height: "100px",
+                padding: "10px",
+                borderRadius: "8px",
+                border: "1px solid #ccc",
+                marginBottom: "1rem",
+                fontFamily: "inherit"
+              }}
+            />
+            
+            <div style={{ display: "flex", gap: "10px", justifyContent: "flex-end" }}>
+              <button 
+                onClick={() => setShowEventModal(false)}
+                style={{
+                  padding: "8px 16px",
+                  borderRadius: "6px",
+                  border: "1px solid #ccc",
+                  background: "white",
+                  cursor: "pointer"
+                }}
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={async () => {
+                  if (!eventText.trim()) return;
+                  
+                  setIsClassifying(true);
+                  try {
+                    const response = await fetch('http://localhost:3001/api/classify-event', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({ eventText })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (data.event_type && data.amount) {
+                      const amount = Number(data.amount);
+                      let newSavings = finances.savings || 0;
+                      let message = "";
+
+                      if (data.event_type === 'income') {
+                        newSavings += amount;
+                        message = `Life Event: Added €${amount.toLocaleString()} to your savings!`;
+                      } else {
+                        newSavings -= amount;
+                        message = `Life Event: Deducted €${amount.toLocaleString()} from your savings.`;
+                      }
+
+                      setFinances({ ...finances, savings: newSavings });
+                      alert(message);
+                      setShowEventModal(false);
+                      setEventText("");
+                    }
+                  } catch (error) {
+                    console.error("Error classifying event:", error);
+                    alert("Failed to process life event. Please try again.");
+                  } finally {
+                    setIsClassifying(false);
+                  }
+                }}
+                disabled={isClassifying}
+                style={{
+                  padding: "8px 16px",
+                  borderRadius: "6px",
+                  border: "none",
+                  background: isClassifying ? "#ccc" : "#ff9800",
+                  color: "white",
+                  cursor: isClassifying ? "not-allowed" : "pointer",
+                  fontWeight: "bold"
+                }}
+              >
+                {isClassifying ? "Processing..." : "Submit"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* PROGRESS BAR */}
       <div style={{ marginTop: "3rem" }}>

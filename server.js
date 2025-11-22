@@ -37,6 +37,27 @@ const HomeBuyingPlanSchema = z.object({
 });
 
 // Agent configurations
+const EVENT_CLASSIFIER_AGENT = new Agent({
+  name: 'Event clssifier Agent',
+  model: 'gpt-4o',
+  temperature: 0,
+  instructions: `You are a specialized event classifier agent. Your role is to:
+- take some event details from user (e.g. going on a vacation to spain next week, got bonus from stocks)
+- predict the event into one of two classes: spend/income
+- Predict amount of event
+- Return strict JSON response
+- Do not ask followup question
+
+IMPORTANT: Always respond with structured JSON data containing:
+- Event class: spend or income
+- Amount (money in euro)
+
+e.g. if user says he/she got bonus from stocks, then return JSON as
+{"event_type": "income", "amount": 5000}
+`,
+});
+
+// Agent configurations
 const FINANCIAL_ADVISOR_AGENT = new Agent({
   name: 'Financial Advisor Agent',
   model: 'gpt-4o',
@@ -129,6 +150,50 @@ You MUST respond with a strict JSON object(without extract wrapper) matching thi
 });
 
 // API Routes
+app.post('/api/classify-event', async (req, res) => {
+  try {
+    const { eventText } = req.body;
+
+    if (!eventText) {
+      return res.status(400).json({ error: 'eventText is required' });
+    }
+
+    console.log('Classifying event:', eventText);
+
+    // Run the agent
+    const result = await run(EVENT_CLASSIFIER_AGENT, eventText);
+    const rawResult = result.finalOutput;
+    
+    console.log('Raw AI response:', rawResult);
+
+    // Try to parse the JSON response
+    let jsonResult;
+    try {
+      // Remove markdown code blocks if present
+      const cleanedResult = rawResult.replace(/```json/g, '').replace(/```/g, '');
+      
+      // Extract JSON from the response if it's wrapped in text
+      const jsonMatch = cleanedResult.match(/\{[\s\S]*\}/);
+      jsonResult = jsonMatch ? JSON.parse(jsonMatch[0]) : JSON.parse(cleanedResult);
+    } catch (parseError) {
+      console.error('JSON parse error:', parseError.message);
+      return res.status(500).json({ 
+        error: 'Failed to parse AI response as JSON',
+        rawResponse: rawResult 
+      });
+    }
+    
+    res.json(jsonResult);
+
+  } catch (error) {
+    console.error('Error classifying event:', error.message);
+    res.status(500).json({ 
+      error: 'Failed to classify event',
+      message: error.message 
+    });
+  }
+});
+
 app.post('/api/generate-plan', async (req, res) => {
   try {
     const { userQuery } = req.body;
