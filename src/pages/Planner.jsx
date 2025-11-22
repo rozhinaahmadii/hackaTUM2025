@@ -9,16 +9,16 @@ export default function Planner() {
   const salary = finances?.salary || 0;
   const expenses = finances?.expenses || 0;
   const debt = finances?.debt || 0;
-  const goalAmount = dreamHome?.goalPrice || 20000;
+  const goalAmount = finances?.target || 400000;
 
   // Derived percentage
   const savingsPercent = (savings / goalAmount) * 100;
 
   // Milestones
   const savingsMilestones = [
-    { id: 1, title: "€1,000", point: 1000 },
-    { id: 2, title: "€5,000", point: 5000 },
-    { id: 3, title: "Halfway", point: goalAmount / 2 },
+    { id: 1, title: "25%", point: goalAmount * 0.25 },
+    { id: 2, title: "Halfway", point: goalAmount * 0.5 },
+    { id: 3, title: "75%", point: goalAmount * 0.75 },
     { id: 4, title: "Goal!", point: goalAmount, goal: true }
   ];
 
@@ -185,7 +185,7 @@ export default function Planner() {
               type="number"
               value={goalAmount}
               onChange={(e) =>
-                setDreamHome({ ...dreamHome, goalPrice: Number(e.target.value) })
+                setFinances({ ...finances, target: Number(e.target.value) })
               }
               style={inputStyle}
             />

@@ -14,16 +14,16 @@ export function PlannerProvider({ children }) {
   // Dream home data
   const [dreamHome, setDreamHome] = useState({
     propertyType: "APARTMENTBUY",
-    city: "",
+    city: "Munich",
   });
 
   // Financial data
   const [finances, setFinances] = useState({
     jobType: "",
-    salary: 0,
-    savings: 0,
-    monthlySavings: 0, // Added for Time to Home prediction
-    target: 0, // User defined target
+    salary: 5000,
+    savings: 5000,
+    monthlySavings: 2000, // Added for Time to Home prediction
+    target: 500000, // User defined target
   });
 
   // FETCH PROPERTIES + CALCULATE AVERAGE
