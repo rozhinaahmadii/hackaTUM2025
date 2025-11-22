@@ -10,18 +10,8 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const JOB_TYPES = [
-  { label: "Select Job Type", value: "", salary: 0 },
-  { label: "Student", value: "Student", salary: 1200 },
-  { label: "Junior Developer", value: "Junior Developer", salary: 2500 },
-  { label: "Senior Developer", value: "Senior Developer", salary: 4500 },
-  { label: "Manager", value: "Manager", salary: 5500 },
-  { label: "Executive", value: "Executive", salary: 8000 },
-  { label: "Other", value: "Other", salary: 0 },
-];
-
 export default function Profile() {
-  const { finances, setFinances, propertyCostEstimate } = usePlanner();
+  const { finances, setFinances, propertyCostEstimate, dreamHome, setDreamHome } = usePlanner();
   const navigate = useNavigate();
 
   // Default values for calculation
@@ -55,25 +45,14 @@ export default function Profile() {
 
       <div className="grid-2">
         <div className="card">
-          <label>Job Type</label>
-          <select
-            value={finances.jobType}
-            onChange={(e) => {
-              const selectedJob = JOB_TYPES.find(j => j.value === e.target.value);
-              setFinances({ 
-                ...finances, 
-                jobType: e.target.value,
-                salary: selectedJob && selectedJob.salary > 0 ? selectedJob.salary : finances.salary 
-              });
-            }}
-            style={{ width: "100%", padding: "8px", marginBottom: "10px" }}
-          >
-            {JOB_TYPES.map((job) => (
-              <option key={job.label} value={job.value}>
-                {job.label}
-              </option>
-            ))}
-          </select>
+          <label>City</label>
+          <input
+            type="text"
+            value={dreamHome.city}
+            onChange={(e) =>
+              setDreamHome({ ...dreamHome, city: e.target.value })
+            }
+          />
 
           <label>Salary (€ / month)</label>
           <input

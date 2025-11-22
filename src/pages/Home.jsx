@@ -7,7 +7,7 @@ export default function Home() {
   console.log("Home component is rendering");
 
   return (
-    <div style={{ padding: "20px", minHeight: "400px" }}>
+    <div style={{ padding: "20px", marginBottom: "-20px" }}>
       <h1 style={{ 
         fontSize: "30px", 
         marginBottom: "10px", 
