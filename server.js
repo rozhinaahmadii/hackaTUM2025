@@ -39,7 +39,7 @@ const HomeBuyingPlanSchema = z.object({
 // Agent configurations
 const EVENT_CLASSIFIER_AGENT = new Agent({
   name: 'Event clssifier Agent',
-  model: 'gpt-4o',
+  model: 'gpt-5',
   temperature: 0,
   instructions: `You are a specialized event classifier agent. Your role is to:
 - take some event details from user (e.g. going on a vacation to spain next week, got bonus from stocks)
@@ -60,7 +60,7 @@ e.g. if user says he/she got bonus from stocks, then return JSON as
 // Agent configurations
 const FINANCIAL_ADVISOR_AGENT = new Agent({
   name: 'Financial Advisor Agent',
-  model: 'gpt-4o',
+  model: 'gpt-5',
   temperature: 0,
   instructions: `You are a specialized financial advisor for home buyers. Your role is to:
 - Analyze user's financial situation (income, savings, expenses)
@@ -81,7 +81,7 @@ Focus on actionable financial advice.`,
 
 const MARKET_RESEARCH_AGENT = new Agent({
   name: 'Market Research Agent',
-  model: 'gpt-4o',
+  model: 'gpt-5',
   temperature: 0,
   instructions: `You are a real estate market specialist. Your role is to:
 - Provide location-specific housing market insights
@@ -102,7 +102,7 @@ Focus on practical market knowledge and location-specific advice.`,
 
 const TRIAGE_AGENT = new Agent({
   name: 'InterFox Action Planner',
-  model: 'gpt-4o',
+  model: 'gpt-5',
   temperature: 0,
   instructions: `You are InterFox Action Planner, an AI assistant helping users achieve their dream home through personalized financial and lifestyle recommendations.
 
@@ -133,7 +133,8 @@ You MUST respond with a strict JSON object(without extract wrapper) matching thi
   "budget_analysis": {
     "affordable_price_range": "€800,000 - €1,200,000",
     "monthly_payment_estimate": "€3,500 - €4,200",
-    "down_payment_needed": "€160,000 - €240,000"
+    "down_payment_needed": "€160,000 - €240,000",
+    "timeline_months": "1.5 years"
   },
   "quick_wins": ["List of immediate actions"],
   "next_immediate_steps": ["Next 1-2 actions to take"]
@@ -205,11 +206,11 @@ app.post('/api/generate-plan', async (req, res) => {
     console.log('Generating plan for query:', userQuery);
 
     // Run the agent
-    // const result = await run(TRIAGE_AGENT, userQuery);
-    // const rawResult = result.finalOutput;
+    const result = await run(TRIAGE_AGENT, userQuery);
+    const rawResult = result.finalOutput;
         
     // Read from demo file instead of calling AI
-    const rawResult = fs.readFileSync('demo_ai_suggestion.json', 'utf-8');
+    // const rawResult = fs.readFileSync('demo_ai_suggestion.json', 'utf-8');
 
     // Try to parse the JSON response
     let jsonResult;

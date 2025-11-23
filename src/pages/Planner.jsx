@@ -111,8 +111,7 @@ export default function Planner() {
           monthlyIncome: salary,
           savings: savings,
           location: dreamHome?.city || "Munich",
-          propertyType: dreamHome?.propertyType || "Apartment",
-          timeline: "ASAP"
+          propertyType: dreamHome?.propertyType || "Apartment"
         }}
       />
 
