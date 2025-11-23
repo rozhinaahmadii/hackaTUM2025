@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { searchProperties } from "../api/thinkImmo"; // <-- adjust path if needed
+import { searchProperties } from "../api/thinkImmo";
 
 const PlannerContext = createContext();
 
@@ -17,13 +17,52 @@ export function PlannerProvider({ children }) {
     city: "Munich",
   });
 
-  // Financial data
+  // ⭐ UPDATED + COMPLETE FINANCIAL MODEL
   const [finances, setFinances] = useState({
     jobType: "",
     salary: 5000,
     savings: 5000,
-    monthlySavings: 2000, // Added for Time to Home prediction
-    target: 500000, // User defined target
+    monthlySavings: 2000,
+    target: 500000,
+
+    // NEW: Monthly expenses
+    expenses: {
+      rent: 900,
+      groceries: 300,
+      utilities: 120,
+      transport: 120,
+      subscriptions: 40,
+      others: 100,
+    },
+
+    // NEW: Debt
+    debts: [
+      {
+        type: "Student Loan",
+        balance: 12000,
+        monthlyPayment: 160,
+        interest: 3.2,
+      },
+      {
+        type: "Credit Card",
+        balance: 1500,
+        monthlyPayment: 50,
+        interest: 19.5,
+      },
+    ],
+
+    // NEW: Investment growth settings
+    investment: {
+      expectedReturn: 4.2,   // %
+      inflation: 2.1,         // %
+      compound: true,
+    },
+
+    // NEW: Mortgage settings
+    mortgage: {
+      downPaymentPercent: 20,
+      mortgageInterest: 3.0,
+    }
   });
 
   // FETCH PROPERTIES + CALCULATE AVERAGE
@@ -40,10 +79,11 @@ export function PlannerProvider({ children }) {
     setProperties(withImages);
 
     if (results.length > 0) {
-      const firstTen = results.slice(0, 100);
+      const firstHundred = results.slice(0, 100);
       const avg =
-        firstTen.reduce((sum, item) => sum + (item.buyingPrice || 0), 0) /
-        firstTen.length;
+        firstHundred.reduce((sum, item) => sum + (item.buyingPrice || 0), 0) /
+        firstHundred.length;
+
       setAvgPrice(Math.round(avg));
     }
   }
@@ -53,7 +93,7 @@ export function PlannerProvider({ children }) {
       value={{
         properties,
         avgPrice,
-        propertyCostEstimate: avgPrice, // Alias for Profile page
+        propertyCostEstimate: avgPrice,
         dreamHome,
         setDreamHome,
         finances,
