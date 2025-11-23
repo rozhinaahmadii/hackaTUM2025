@@ -164,6 +164,9 @@ app.post('/api/classify-event', async (req, res) => {
     // Run the agent
     const result = await run(EVENT_CLASSIFIER_AGENT, eventText);
     const rawResult = result.finalOutput;
+
+    // const rawResult = fs.readFileSync('demo_ai_suggestion.json', 'utf-8');
+
     
     console.log('Raw AI response:', rawResult);
 

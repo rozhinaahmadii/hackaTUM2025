@@ -117,24 +117,61 @@ export default function Planner() {
 
       <h2 style={{ marginTop: "3rem" }}>Your Financial Dashboard</h2>
 
-      {/* + LIFE EVENT BUTTON */}
-      <button
-        onClick={() => setShowEventModal(true)}
-        style={{
-          padding: "0.9rem 3rem",
-          borderRadius: "10px",
-          background: "#ff9800",
-          color: "white",
-          border: "none",
-          cursor: "pointer",
-          fontWeight: "bold",
-          fontSize: "1.1rem",
-          marginTop: "1rem",
-          boxShadow: "0 3px 10px rgba(0,0,0,0.15)"
-        }}
-      >
-        + Life Event
-      </button>
+      <div style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
+        {/* + LIFE EVENT BUTTON */}
+        <button
+          onClick={() => setShowEventModal(true)}
+          style={{
+            padding: "0.9rem 3rem",
+            borderRadius: "10px",
+            background: "#ff9800",
+            color: "white",
+            border: "none",
+            cursor: "pointer",
+            fontWeight: "bold",
+            fontSize: "1.1rem",
+            boxShadow: "0 3px 10px rgba(0,0,0,0.15)"
+          }}
+        >
+          + Life Event
+        </button>
+
+        {/* SHARE BUTTON */}
+        <button
+          onClick={async () => {
+            const shareData = {
+              title: 'My Financial Plan',
+              text: `I'm saving for a home in ${dreamHome?.city || 'Munich'}! Current progress: ${savingsPercent.toFixed(1)}%`,
+              url: window.location.href
+            };
+            try {
+              if (navigator.share) {
+                await navigator.share(shareData);
+              } else {
+                alert("Sharing is not supported on this browser, but here is your plan summary:\n" + shareData.text);
+              }
+            } catch (err) {
+              console.error("Error sharing:", err);
+            }
+          }}
+          style={{
+            padding: "0.9rem 2rem",
+            borderRadius: "10px",
+            background: "#2196f3",
+            color: "white",
+            border: "none",
+            cursor: "pointer",
+            fontWeight: "bold",
+            fontSize: "1.1rem",
+            boxShadow: "0 3px 10px rgba(0,0,0,0.15)",
+            display: "flex",
+            alignItems: "center",
+            gap: "8px"
+          }}
+        >
+          <span>📤</span> Share
+        </button>
+      </div>
 
       {/* LIFE EVENT MODAL */}
       {showEventModal && (
