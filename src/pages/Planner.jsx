@@ -157,7 +157,7 @@ export default function Planner() {
           style={{
             padding: "0.9rem 2rem",
             borderRadius: "10px",
-            background: "#2196f3",
+            background: "rgba(246, 189, 67, 1)",
             color: "white",
             border: "none",
             cursor: "pointer",
@@ -169,7 +169,7 @@ export default function Planner() {
             gap: "8px"
           }}
         >
-          <span>📤</span> Share
+          <span> + </span> Add Friends 
         </button>
       </div>
 
@@ -301,74 +301,49 @@ export default function Planner() {
       >
         <h3 style={{ marginBottom: "1rem" }}>Financial Summary</h3>
 
-        <div style={{ display: "grid", gap: "1.3rem" }}>
-        
-          {/* Salary */}
-          <label>
-            <strong>Monthly Salary:</strong><br />
-            <input
-              type="number"
-              value={salary}
-              onChange={(e) =>
-                setFinances({ ...finances, salary: Number(e.target.value) })
-              }
-              style={inputStyle}
-            />
-          </label>
+<div className="static-summary">
 
-          {/* Expenses */}
-          <label>
-            <strong>Monthly Expenses:</strong><br />
-            <input
-              type="number"
-              value={expenses}
-              onChange={(e) =>
-                setFinances({ ...finances, expenses: Number(e.target.value) })
-              }
-              style={inputStyle}
-            />
-          </label>
+  <div className="summary-row">
+    <span className="summary-label">Salary:</span>
+    <span className="summary-value">
+      {finances.salary?.toLocaleString() || 0} €
+    </span>
+  </div>
 
-          {/* Debt */}
-          <label>
-            <strong>Debt:</strong><br />
-            <input
-              type="number"
-              value={debt}
-              onChange={(e) =>
-                setFinances({ ...finances, debt: Number(e.target.value) })
-              }
-              style={inputStyle}
-            />
-          </label>
+  <div className="summary-row">
+    <span className="summary-label">Expenses:</span>
+    <span className="summary-value">
+      {finances.expenses
+        ? Object.values(finances.expenses).reduce((a,b)=>a+Number(b),0).toLocaleString()
+        : 0} €
+    </span>
+  </div>
 
-          {/* Goal */}
-          <label>
-            <strong>Savings Goal:</strong><br />
-            <input
-              type="number"
-              value={goalAmount}
-              onChange={(e) =>
-                setFinances({ ...finances, target: Number(e.target.value) })
-              }
-              style={inputStyle}
-            />
-          </label>
+  <div className="summary-row">
+    <span className="summary-label">Debt Payments:</span>
+    <span className="summary-value">
+      {finances.debts
+        ? finances.debts.reduce((a,d)=>a+Number(d.monthlyPayment||0),0).toLocaleString()
+        : 0} €
+    </span>
+  </div>
 
-          {/* Savings */}
-          <label>
-            <strong>Current Savings:</strong><br />
-            <input
-              type="number"
-              value={savings}
-              onChange={(e) =>
-                setFinances({ ...finances, savings: Number(e.target.value) })
-              }
-              style={inputStyle}
-            />
-          </label>
+  <div className="summary-row">
+    <span className="summary-label">Goal Amount:</span>
+    <span className="summary-value">
+      {finances.target?.toLocaleString() || 0} €
+    </span>
+  </div>
 
-        </div>
+  <div className="summary-row">
+    <span className="summary-label">Current Savings:</span>
+    <span className="summary-value">
+      {finances.savings?.toLocaleString() || 0} €
+    </span>
+  </div>
+
+</div>
+
       </div>
     </div>
   );
