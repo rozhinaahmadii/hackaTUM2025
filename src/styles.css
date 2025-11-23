@@ -557,3 +557,215 @@ input:focus, select:focus, textarea:focus {
   background: #fff3e6;
   color: #ff6a00;
 }
+
+/* ============================================
+   PROFILE PAGE LAYOUT (NEW)
+============================================ */
+.profile-page {
+  display: flex;
+  gap: 24px;
+  padding: 24px;
+  min-height: calc(100vh - 80px);
+}
+
+/* LEFT SIDEBAR */
+.profile-sidebar {
+  width: 320px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e4e4e4;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  overflow-y: auto;
+  max-height: calc(100vh - 120px);
+}
+
+/* MAIN PANEL */
+.profile-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ============================================
+   PROFILE PAGE LAYOUT (FINAL)
+============================================ */
+.profile-page {
+  display: flex;
+  gap: 24px;
+  padding: 24px;
+  margin-bottom: 60px; /* does NOT break footer */
+}
+
+.profile-sidebar {
+  width: 500px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e4e4e4;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  overflow-y: auto;
+  max-height: calc(100vh - 140px);
+}
+
+.profile-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0; 
+}
+
+/* Accordion */
+.accordion-section {
+  border-bottom: 1px solid #e7e7e7;
+  padding-bottom: 6px;
+  margin-bottom: 6px;
+}
+
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 8px 0;
+  cursor: pointer;
+}
+
+.accordion-content {
+  margin-top: 10px;
+}
+
+/* Fix labels inside sidebar */
+.profile-sidebar label {
+  margin-top: 4px !important;
+}
+
+/* Multi-column layouts */
+.profile-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.profile-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.profile-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .profile-grid-2,
+  .profile-grid-3,
+  .profile-grid-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Debt card */
+.debt-card {
+  background: #fafafa;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 4px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* KPI Cards */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.kpi-card {
+  background: white;
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 1px 10px rgba(0,0,0,0.06);
+}
+
+.kpi-label {
+  color: #666;
+}
+
+.kpi-value {
+  margin-top: 6px;
+  font-size: 1.4rem;
+  color: #4a6cf7;
+  font-weight: bold;
+}
+
+/* Chart panel */
+.chart-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 1px 10px rgba(0,0,0,0.06);
+}
+
+.chart-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.chart-box {
+  width: 100%;
+  height: 260px !important;
+}
+
+.profile-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.edit-btn {
+  background: #ff6a00;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  font-size: 13px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.edit-btn:hover {
+  background: #ff8b33;
+}
+
+.sidebar-profile-static {
+  background: #fff4e8;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #ffd3ae;
+  margin-bottom: 18px;
+}
+
+.profile-static-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 6px 0;
+}
+
+.static-label {
+  font-weight: 700;
+  color: #333;
+}
+
+.static-value {
+  color: #555;
+  font-weight: 500;
+}

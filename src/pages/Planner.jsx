@@ -22,10 +22,10 @@ export default function Planner() {
 
   // Milestones
   const savingsMilestones = [
-    { id: 1, title: "25%", point: goalAmount * 0.25 },
-    { id: 2, title: "Halfway", point: goalAmount * 0.5 },
-    { id: 3, title: "75%", point: goalAmount * 0.75 },
-    { id: 4, title: "Goal!", point: goalAmount, goal: true }
+    { id: 1, title: "Reached the own payment!", point: goalAmount * 0.25 },
+    { id: 2, title: "Halfway through!", point: goalAmount * 0.5 },
+    { id: 3, title: "Almost there!", point: goalAmount * 0.75 },
+    { id: 4, title: "Your dream home!", point: goalAmount, goal: true }
   ];
 
   // Horizontal progress bar
