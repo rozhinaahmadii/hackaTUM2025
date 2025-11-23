@@ -39,7 +39,7 @@ const HomeBuyingPlanSchema = z.object({
 // Agent configurations
 const EVENT_CLASSIFIER_AGENT = new Agent({
   name: 'Event clssifier Agent',
-  model: 'gpt-5',
+  model: 'gpt-4o',
   temperature: 0,
   instructions: `You are a specialized event classifier agent. Your role is to:
 - take some event details from user (e.g. going on a vacation to spain next week, got bonus from stocks)

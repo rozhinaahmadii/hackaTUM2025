@@ -12,7 +12,6 @@ export default function Home() {
       <div style={{ flex: 1 }}>
         <h1 style={{ 
           fontSize: "30px", 
-          marginBottom: "10px", 
           color: "#333",
         }}>
           A guided, data-driven path to home ownership
@@ -20,10 +19,9 @@ export default function Home() {
 
         <p style={{ 
           maxWidth: "600px", 
-          marginBottom: "20px",
+          marginBottom: "30px",
           color: "#333",
-          backgroundColor: "#f0f0f0",
-          padding: "10px"
+          padding: "10px 0px"
         }}>
           Interfox combines real market data with smart financial planning to show
           you exactly when you can buy your dream home.
