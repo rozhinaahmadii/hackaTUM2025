@@ -96,6 +96,10 @@ export default function AISuggestedPlans({ userProfile }) {
                 <span>Down Payment:</span>
                 <strong>{plans.budget_analysis.down_payment_needed}</strong>
               </div>
+              <div className="budget-item">
+                <span>Estimated Timeline:</span>
+                <strong>{plans.total_timeline_months} months</strong>
+              </div>
             </div>
           </div>
 
